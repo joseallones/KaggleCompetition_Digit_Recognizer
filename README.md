@@ -16,5 +16,8 @@ Each image is 28 pixels in height and 28 pixels in width, for a total of 784 pix
 
 ##Packages and methods
 The algorithms "svmLinear", "svmPoly", "rf" (random forest) and "rpart2" (clasification trees) of the caret package were used to fit models. 
+
+digitRecognision_caret.R contains all code to fit the model
+
 ##Results
 "svmPoly" with parameters scale = 0.1, degree = 3, C = 1  gives the best performance: 97.2% precision in test set. 
