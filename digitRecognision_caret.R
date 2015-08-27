@@ -35,28 +35,27 @@ trainPreProcessed <- predict(preProc,training2)  # poner training2 para usar las
 test_kaggle_PreProcessed  <-  predict(preProc,test_kaggle)
 
 
-ctrl <- trainControl(method = "repeatedcv", repeats = 2);
+ctrl <- trainControl(method = "repeatedcv", repeats = 3);
 
 
 ##########################
 ######## SVMLINEAR #######
 ##########################
-#train
-svmLinearmodel <- train(x=trainPreProcessed,y=labels_training, method = "svmLinear", tuneLength = 5, trControl = ctrl);
-#test local
-classesPredictionSVMLin <- predict(svmLinearmodel, newdata = testPreProcessed)
-confusionMatrix(data = classesPredictionSVMLin, labels_testing);
-#test kaggle
-classesPredictionSVMLin_kaggle_test <- predict(svmLinearmodel, newdata = test_kaggle_PreProcessed)
-predictions_SVMLinear <- data.frame(ImageId=1:nrow(test), Label=levels(labels_training)[classesPredictionSVMLin_kaggle_test])
-write_csv(predictions_SVMLinear, "svmLinear_benchmark.csv") 
+# #train
+# svmLinearmodel <- train(x=trainPreProcessed,y=labels_training, method = "svmLinear", tuneLength = 5, trControl = ctrl);
+# #test local
+# #classesPredictionSVMLin <- predict(svmLinearmodel, newdata = testPreProcessed)
+# #confusionMatrix(data = classesPredictionSVMLin, labels_testing);
+# #test kaggle
+# classesPredictionSVMLin_kaggle_test <- predict(svmLinearmodel, newdata = test_kaggle_PreProcessed)
+# predictions_SVMLinear <- data.frame(ImageId=1:nrow(test), Label=levels(labels_training)[classesPredictionSVMLin_kaggle_test])
+# write_csv(predictions_SVMLinear, "svmLinear_benchmark.csv") 
 
 
 
 ##########################
 ######## SVMLPOLY ########
 ##########################
-
 
 #PolyGrid = data.frame(scale = 0.2, degree = 5, C = 2 );
 #PolyGrid = data.frame(scale = c(0.05, 0.1, 0.5, 2,6), degree = c(2,3,5,10,40), C = c(0.5,1,5,10,40) );
@@ -82,8 +81,8 @@ write_csv(predictions_SVMPoly, "svmPoly_benchmark_27Ag.csv")
 # RFGrid = data.frame(mtry = c(4,12,20,28));
 # RFFit <- train(x=trainPreProcessed,y=labels_training, method = "rf", tuneGrid = RFGrid, ntree=100, trControl = ctrl);
 # #test local
-# classesPredictionRF <- predict(RFFit, newdata = testPreProcessed)
-# confusionMatrix(data = classesPredictionRF, labels_testing);
+# #classesPredictionRF <- predict(RFFit, newdata = testPreProcessed)
+# #confusionMatrix(data = classesPredictionRF, labels_testing);
 # #test kaggle
 # classesPredictionRF_kaggle_test <- predict(RFFit, newdata = test_kaggle_PreProcessed)
 # predictions_RF <- data.frame(ImageId=1:nrow(test), Label=levels(labels_training)[classesPredictionRF_kaggle_test])
