@@ -1,3 +1,6 @@
+
+##R Code for [Kaggle Contest: Digit Recognizer](Kaggle Contest: Digit Recognizer)
+
 ## From Kaggle's competition details:
 
 Classify handwritten digits using the famous MNIST data
